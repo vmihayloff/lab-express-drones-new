@@ -41,4 +41,14 @@ app.use('/', index);
 const droneRoutes = require('./routes/drones');
 app.use('/', droneRoutes);
 
-module.exports = app;
+// If no route matches show 404 page
+app.use((req, res, next) => {
+  res.status(404);
+  res.render('not-found');
+});
+
+
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on http://localhost:${process.env.PORT}`);
+})
+
